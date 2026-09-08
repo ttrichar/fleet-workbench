@@ -53,8 +53,8 @@ const DevicesTool = Tool(
       'List devices with site, type, minutes since last report, and battery percentage.',
     ),
   }))
-  .Execute((_ctx) => ({
-    ListDevices: (site: string) =>
+  .Execute((_ctx) => Promise.resolve({
+    ListDevices: (site: string = 'all') =>
       Promise.resolve(JSON.stringify(
         site === 'all' ? DEVICES : DEVICES.filter((d) => d.Site === site),
       )),
@@ -73,7 +73,7 @@ const TelemetryTool = Tool(
       output: z.promise(z.string()),
     }).describe('Return the most recent reading for a device signal.'),
   }))
-  .Execute((_ctx) => ({
+  .Execute((_ctx) => Promise.resolve({
     LatestReading: (device: string, signal: string) => {
       const found = DEVICES.find((d) => d.Id === device);
 
@@ -126,16 +126,16 @@ const AlertRulesTool = Tool(
       output: z.promise(z.string()),
     }).describe('List the alert rules currently configured.'),
   }))
-  .Execute((_ctx) => ({
-    CreateHeartbeatRule: (device: string, silentMinutes: number) =>
+  .Execute((_ctx) => Promise.resolve({
+    CreateHeartbeatRule: (device: string, silentMinutes: number = 30) =>
       addRule('heartbeat', device, `silent for ${silentMinutes}m`),
     CreateThresholdRule: (
       device: string,
       signal: string,
       above: number,
-      forMinutes: number,
+      forMinutes: number = 5,
     ) => addRule('threshold', device, `${signal} above ${above} for ${forMinutes}m`),
-    ListRules: (device: string) =>
+    ListRules: (device: string = 'all') =>
       Promise.resolve(JSON.stringify(
         device === 'all' ? rules : rules.filter((r) => r.Device === device),
       )),
