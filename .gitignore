@@ -1,0 +1,11 @@
+# Deno — resolved from deno.jsonc on each build, not pinned for this demo
+deno.lock
+
+# fai workbench runtime logs
+.logs/
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
