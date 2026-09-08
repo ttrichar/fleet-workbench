@@ -60,7 +60,7 @@ Point the workbench inspector at this repo:
 | Field | Value |
 |---|---|
 | Repo | `https://github.com/ttrichar/fleet-workbench` |
-| Ref | `main` (or pin a tag such as `v0.1.1` for an immutable build) |
+| Ref | `main` (or pin a tag such as `v0.1.2` for an immutable build) |
 | Entry | `workbenches/fleet/local.ts` |
 | APISlug | `fleet` (or any workspace-unique DNS-safe slug) |
 | Modes | Leave `MCP` enabled (default) |

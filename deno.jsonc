@@ -1,6 +1,6 @@
 {
   "name": "fleet-workbench",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "exports": { ".": "./workbenches/fleet/local.ts" },
   "tasks": {
     "mcp": "fai run workbenches/fleet/local.ts --mode MCP"
